@@ -7,13 +7,7 @@
 ****
 
 ![아두이노](/readmeFile/ArduinoMonitoring_Main.png)
-<img src="/readmeFile/ArduinoMonitoring_Main.png"  width="700" height="370">
 
-출처: https://cutemoomin.tistory.com/112 [무민은귀여워]
-
-출처: https://cutemoomin.tistory.com/112 [무민은귀여워]
-
-출처: https://cutemoomin.tistory.com/112 [무민은귀여워]
 ![회로도](/readmeFile/ArduinoMonitoring_Circuit.png)
 
 ****
