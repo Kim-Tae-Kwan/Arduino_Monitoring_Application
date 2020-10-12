@@ -25,12 +25,12 @@ namespace ArduinoMonitoringWPFApp.ViewModels
         readonly IWindowManager windowManager; //팝업창
         readonly IDialogService dialogService;
 
-        string strConnString = "Data Source=210.119.12.60;Port=3306;Database=iot_sensordata;uid=root;password=mysql_p@ssw0rd";
+        string strConnString = "Data Source=localhost;Port=3306;Database=iot_sensordata;uid=root;password=mysql_p@ssw0rd";
 
         string strQuery = "INSERT INTO sensordatatbl " +
-                    " (Date, Value) " +
+                    " (Date, Photo, Temp, Humi) " +
                     " VALUES " +
-                    " (@Date, @Value) ";
+                    " (@Date, @Photo, @Temp, @Humi) ";
 
         bool isSimulation;
         public bool IsSimulation 
@@ -351,11 +351,11 @@ namespace ArduinoMonitoringWPFApp.ViewModels
                 if (IsSimulation == false )
                 {
                         BtnPortValue = $"{serial.PortName}";
-                        //InsertDataToDB(data);
                 }
                 else
                     BtnPortValue = $"Simulation";
 
+                InsertDataToDB(data);
 
             }
             catch (Exception ex)
@@ -364,25 +364,39 @@ namespace ArduinoMonitoringWPFApp.ViewModels
             }
         }
 
-        //private void InsertDataToDB(SensorData data)
-        //{
-        //    using (MySqlConnection conn = new MySqlConnection(strConnString))
-        //    {
-        //        conn.Open();
-        //        MySqlCommand cmd = new MySqlCommand(strQuery, conn);
-        //        MySqlParameter paramDate = new MySqlParameter("@Date", MySqlDbType.DateTime)
-        //        {
-        //            Value = data.Date
-        //        };
-        //        cmd.Parameters.Add(paramDate);
-        //        MySqlParameter paramValue = new MySqlParameter("@Value", MySqlDbType.Int32)
-        //        {
-        //            Value = data.Value
-        //        };
-        //        cmd.Parameters.Add(paramValue);
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //} //DB 데이터 입력
+        private void InsertDataToDB(SensorData data)
+        {
+            using (MySqlConnection conn = new MySqlConnection(strConnString))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(strQuery, conn);
+                MySqlParameter paramDate = new MySqlParameter("@Date", MySqlDbType.DateTime)
+                {
+                    Value = data.Date
+                };
+                cmd.Parameters.Add(paramDate);
+
+                MySqlParameter paramPhoto = new MySqlParameter("@Photo", MySqlDbType.Int32)
+                {
+                    Value = data.Photo
+                };
+                cmd.Parameters.Add(paramPhoto);
+
+                MySqlParameter paramTemp = new MySqlParameter("@Temp", MySqlDbType.Int32)
+                {
+                    Value = data.Temp
+                };
+                cmd.Parameters.Add(paramTemp);
+
+                MySqlParameter paramHumi = new MySqlParameter("@Humi", MySqlDbType.Int32)
+                {
+                    Value = data.Humi
+                };
+                cmd.Parameters.Add(paramHumi);
+
+                cmd.ExecuteNonQuery();
+            }
+        } //DB 데이터 입력
 
 
         public bool CanBtnConnect
