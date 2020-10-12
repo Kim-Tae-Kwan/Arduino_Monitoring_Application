@@ -1,6 +1,9 @@
 # Arduino Monitoring Application
 
 아두이노를 통한 조도 센서, 온습도의 데이터 값을 실시간으로 모니터링 하는 프로그램
+****
+> Serial 통신으로 실시간 데이터를 전송하여 C# GUI로 Visualization 합니다.
+****
 
 
 ## 하드웨어
