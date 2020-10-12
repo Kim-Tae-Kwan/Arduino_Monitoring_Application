@@ -14,9 +14,13 @@
 
 ## C# WPF GUI
 
-
 ![GUI1](/readmeFile/ArduinoMonitoring_GUI1.png) 
 ![GUI2](/readmeFile/ArduinoMonitoring_GUI2.png)
+
+## DataBase
+
+![DB_Table](/readmeFile/ArduinoMonitoring_Table.png) 
+
 
 
 
